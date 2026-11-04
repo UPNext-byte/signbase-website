@@ -1,0 +1,4 @@
+# Copy to .dev.vars for local development (never commit .dev.vars)
+RESEND_API_KEY=re_xxxxxxxxxxxx
+QUOTE_FROM=Sign Base <quotes@yourdomain.com>
+QUOTE_TO=you@example.com

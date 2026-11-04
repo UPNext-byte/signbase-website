@@ -1,0 +1,12 @@
+{
+  "name": "signbase-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sign Base website: static site + Cloudflare Pages Function for quote requests",
+  "scripts": {
+    "dev": "wrangler pages dev public",
+    "test": "node --test test/quote.test.mjs",
+    "deploy": "wrangler pages deploy public --project-name signbase-website"
+  },
+  "devDependencies": { "wrangler": "^4" }
+}
