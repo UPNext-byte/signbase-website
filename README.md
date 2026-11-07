@@ -20,7 +20,7 @@ npm test
 ```
 
 ## Edit content
-Products, services and portfolio projects are plain arrays at the top of the `<script>` in `public/index.html` (`SHOP`, `SERVICES`, `PROJECTS`). Prices in `SHOP` are sample values: replace them or set `price: null` to show "Quote on request".
+Products, services and portfolio projects are plain arrays at the top of the `<script>` in `public/index.html` (`SHOP`, `SERVICES`, `PROJECTS`). Set `price` to a number (BWP) or `null` for "Quote on request". Photos live in `public/images/`; add a file and reference it from `PROJECTS` or `SHOP`.
 
 ## Deploy: GitHub + Cloudflare Pages
 1. Create a GitHub repo named `signbase-website`, then:
@@ -46,8 +46,7 @@ Add and verify the business's sending domain in Resend (DNS records), and use an
 Built in: same-origin check, hidden honeypot field, minimum fill time, field and file validation (3 files, 5 MB, PDF/PNG/JPG/WebP), HTML escaping. Recommended extras: enable **Turnstile** (create a widget in Cloudflare, put the public site key in `TURNSTILE_SITEKEY` in `public/index.html`, set `TURNSTILE_SECRET`), and add a Cloudflare WAF **rate limiting rule** on `/api/quote`.
 
 ## Production checklist (needs your input)
-- Real product/project photos (the site currently uses branded text tiles; no photos are included)
-- Real prices, business address and map, social links (footer shows "coming soon")
+- Vinyl logo price per square metre (currently "quote on request"), TikTok link (footer shows "coming soon"; Instagram and Facebook point to Sign_base_bw)
 - Set the canonical domain, then add `sitemap.xml`
 - Send a real test quote and confirm both emails arrive
 
