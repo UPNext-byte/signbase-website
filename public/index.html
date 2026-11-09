@@ -111,230 +111,346 @@ footer img{height:26px;width:auto}.files{font-size:13px}.hint{font-weight:500;co
 @media(max-width:860px){.preview{grid-template-columns:1fr 1fr;grid-template-rows:auto}.preview a:first-child{grid-row:auto;grid-column:span 2}.preview a{height:190px}.preview a:first-child{height:240px}}
 img[src$="bubble-stickers.jpg"],img[src$="number-plates.jpg"],img[src$="bubble-stickers1.jpg"]{object-fit:contain!important;background:#f2f2f0}
 .pimg,.tile .art{position:relative}.pimg img,.tile .art img{position:absolute;inset:0;width:100%;height:100%}
+.menu{display:flex;align-items:center;gap:8px;margin-left:auto}nav{margin-left:0}
+.qbtn{background:none;border:1.5px solid #ffffff44;color:#fff;border-radius:4px;height:40px;padding:0 12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font:700 13.5px var(--f)}
+.qbtn:hover{border-color:var(--or)}.qbtn b{background:var(--or);min-width:20px;height:20px;border-radius:10px;display:grid;place-items:center;font-size:12px;padding:0 5px}
+@media(max-width:1060px){.menu{display:none;position:absolute;top:68px;left:0;right:0;background:var(--ink);flex-direction:column;align-items:stretch;padding:10px 20px 20px;margin:0;gap:4px}.menu.open{display:flex}
+nav{position:static;display:flex;flex-direction:column;padding:0;background:none}.burger{display:block;margin-left:0}.menu .btn{justify-content:center;margin-top:8px}.qbtn{margin-left:auto}}
+@media(max-width:420px){.qbtn span{display:none}}
+.cats{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 8px}
+.cathead{font-size:22px;margin:38px 0 16px;display:flex;align-items:center;gap:10px}.cathead:before{content:"";width:6px;height:22px;background:var(--or);border-radius:2px}
+.pgrid{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.pc{border:1px solid var(--line);border-radius:8px;background:#fff;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .25s,transform .25s}
+.pc:hover{box-shadow:0 12px 30px #0002;transform:translateY(-3px)}
+.pci{position:relative;aspect-ratio:4/3;border:0;padding:0;background:var(--mist);cursor:pointer;display:block;width:100%;overflow:hidden}
+.pci img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}.pc:hover .pci img{transform:scale(1.05)}
+.ph{position:absolute;inset:0;background:linear-gradient(135deg,#2c2e31,#43464a);display:grid;place-content:center;text-align:center;padding:16px;gap:8px}
+.ph i{font:900 30px var(--d);color:var(--or);font-style:normal}.ph span{font-weight:700;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#ddd}
+.pcb{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}.pcb h4{font-size:18px;line-height:1.25}.pcb p{color:var(--gr);font-size:14.5px}
+.pr{margin-top:auto;padding-top:6px}.pr .amt{font:800 24px var(--f)}.pr .u{color:var(--gr);font-size:14px;font-weight:600}.pr .rq{font-weight:800;color:var(--or);font-size:17px}.pr small{display:block;color:var(--gr);font-size:12.5px;font-weight:500}
+.lnk{background:none;border:0;color:var(--ink);font:700 13.5px var(--f);text-decoration:underline;cursor:pointer;padding:4px 2px}.lnk:hover{color:var(--or)}
+.links{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.links a{font:700 13.5px var(--f);color:var(--ink)}.links a:hover{color:var(--or)}
+.btn.dk{background:var(--ink);border-color:var(--ink)}.btn.dk:hover{background:#000}
+.btn.out{background:#fff;color:var(--ink);border-color:var(--line)}.btn.out:hover{border-color:var(--or);color:var(--or);background:#fff}
+.pnote{font-size:12.5px;color:var(--gr)}
+.dh2{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:3}
+.dh2 h3{font-size:20px}.dbody{padding:20px 22px}
+#qd{max-width:min(860px,94vw);max-height:92vh}#pd{max-width:min(940px,94vw);max-height:92vh}
+.pd{display:grid;grid-template-columns:1fr 1fr}@media(max-width:760px){.pd{grid-template-columns:1fr}}
+.pdm{background:#111;position:relative;aspect-ratio:4/3}.pdm img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}.pdm .ph{position:absolute}
+.thumbs{display:flex;gap:6px;padding:8px;background:#111}.thumbs button{width:64px;height:48px;border:2px solid transparent;padding:0;background:none;cursor:pointer;border-radius:3px;overflow:hidden}.thumbs button[aria-current=true]{border-color:var(--or)}.thumbs img{width:100%;height:100%;object-fit:cover}
+.pdi{padding:22px}.pdi h3{font-size:26px;margin:4px 0 8px}ul.dl{padding-left:18px;color:var(--gr);margin:10px 0 14px}ul.dl li{margin:3px 0}
+.qi{border:1px solid var(--line);border-radius:8px;padding:16px;margin-bottom:14px;background:#fafaf9}.qih{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.qfull{grid-column:1/-1}@media(max-width:560px){.qgrid{grid-template-columns:1fr}}
+.qadd{display:flex;gap:8px;margin:6px 0 22px}.qadd select{flex:1}
+.fnames{font-size:12.5px;color:var(--gr);margin-top:4px}
+.about2{display:grid;grid-template-columns:.8fr 1.2fr;gap:36px;align-items:center}@media(max-width:860px){.about2{grid-template-columns:1fr}}
+.abp{background:var(--ink);border-radius:8px;padding:32px 24px;text-align:center;color:#fff}.abp img{margin:0 auto 20px;height:30px;width:auto}
+.abs{display:flex;justify-content:center;gap:28px}.abs b{display:block;font:900 28px var(--d);color:var(--or)}.abs span{font-size:13px;color:#bbb}
+#about{padding:60px 0}#about p{color:var(--gr);margin-bottom:10px}
+.done{text-align:center;padding:30px 10px}.done h3{font-size:24px;margin-bottom:10px}
+.hero .cta .btn{font-size:15px}
+.map{height:210px}
 </style>
 </head>
 <body>
 <header><div class="wrap nav">
 <a class="logo" href="#home" aria-label="Sign Base home"><img src="/logo.png" alt="Sign Base" width="250" height="28"></a>
+<div class="menu" id="menu">
 <nav id="nav" aria-label="Main">
-<a href="#home">Home</a><a href="#about">About Us</a><a href="#services">Products &amp; Services</a><a href="#shop">Pricing</a><a href="#work">Our Work</a><a href="#contact">Contact</a>
-<a class="btn sm" href="#quote">Get a quote</a><a class="btn wa sm" data-wa="Hi Sign Base, I'd like to make an enquiry." href="#">WhatsApp us</a>
+<a href="#home">Home</a><a href="#products">Products &amp; Services</a><a href="#work">Our Work</a><a href="#about">About Us</a><a href="#contact">Contact Us</a>
 </nav>
-<button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
+<button class="btn sm" type="button" data-openq>Request a Quote</button>
+</div>
+<button class="qbtn" type="button" id="qListBtn" data-openq aria-label="Open My Quote List"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg><span>My Quote List</span><b id="qCount">0</b></button>
+<button class="burger" id="burger" aria-label="Menu" aria-expanded="false">&#9776;</button>
 </div></header>
 
-<main id="home">
-<div class="hero"><div class="wrap">
+<main>
+<section id="home" class="hero" style="padding:70px 0 90px"><div class="wrap">
 <div>
 <h1>Making your brand impossible to miss.</h1>
 <p>Sign Base designs, manufactures and installs signage, stickers, printed apparel and number plates for businesses across Botswana, from corner shops to filling stations.</p>
-<div class="cta"><a class="btn" href="#shop">Explore our products</a><a class="btn ghost" href="#quote">Request a quote</a><a class="btn ghost" data-wa="Hi Sign Base, I'd like a quote for a signage project." href="#">WhatsApp us</a></div>
+<div class="cta"><a class="btn" href="#products">Explore Products &amp; Services</a><button class="btn ghost" type="button" data-openq>Request a Quote</button></div>
 </div>
 <figure class="frame"><img class="photo" src="/images/fuel-station-signage1.jpg" alt="Filling station canopy branding manufactured and installed by Sign Base" fetchpriority="high"><figcaption>Filling station canopy branding</figcaption></figure>
-</div></div>
-
-<section style="padding-bottom:0"><div class="wrap">
-<h2>Recent work</h2><p class="lead">Real signage manufactured and installed by our team.</p>
-<div class="preview">
-<a href="#work"><img src="/images/corporate-signage5.jpg" alt="Illuminated filling station totem sign at night" loading="lazy"><span>Filling station totem</span></a>
-<a href="#work"><img src="/images/corporate-signage1.jpg" alt="Shopfront lettering on a restaurant" loading="lazy"><span>Shopfront signage</span></a>
-<a href="#work"><img src="/images/t-shirt-printing.jpg" alt="Sublimated team jacket" loading="lazy"><span>Team wear</span></a>
-<a href="#work"><img src="/images/fuel-station-signage.jpg" alt="Shopping centre totem with tenant signboards" loading="lazy"><span>Corporate totem</span></a>
-<a href="#work"><img src="/images/bubble-stickers.jpg" alt="Round printed bubble sticker" loading="lazy"><span>Bubble stickers</span></a>
-</div></div></section>
-
-<section id="services"><div class="wrap">
-<h2>Products &amp; services</h2>
-<p class="lead">Everything your business needs to be seen, from a single sticker to a full corporate rollout.</p>
-<div class="grid" id="svcGrid"></div>
 </div></section>
 
-<section class="corp"><div class="wrap">
-<div><h2 style="max-width:20ch">Corporate and filling station signage</h2>
-<p style="margin-bottom:6px;max-width:50ch">Multi-site rollouts need consistency. We manufacture large-format and branded signage built to corporate specifications, including filling station installations and shopping centre totems.</p>
-<ul class="pts"><li>Large-format illuminated and non-illuminated signs</li><li>Brand-spec colour and material matching</li><li>Consistent finish across multiple sites</li><li>Manufacture and installation support</li></ul>
-<p style="margin-top:22px"><a class="btn" href="#quote" data-quote="Corporate / filling station signage">Request a corporate quote</a></p></div>
-<img class="photo" src="/images/fuel-station-signage.jpg" alt="Corporate shopping centre totem sign with tenant panels" loading="lazy">
-</div></section>
-
-<section id="about" class="alt"><div class="wrap about">
-<div><h2>About Us</h2><p class="lead" style="margin:0">Botswana signage and branding since 2009.</p></div>
-<div>
-<p>Established in 2009, Sign Base is a trusted signage and branding company in Botswana. We specialise in designing, manufacturing and installing high-quality signage, corporate fascia, vehicle branding, stickers, printed apparel and number plates.</p>
-<p>With over 17 years of experience, we are committed to delivering innovative designs, exceptional quality and reliable service, helping businesses of all sizes stand out and make a lasting impression.</p>
-<div class="grid" style="grid-template-columns:repeat(3,1fr);margin-top:20px;gap:12px">
-<div><b>Since 2009</b><br><small>17+ years of experience</small></div><div><b>Quality</b><br><small>Good materials, clean finishing</small></div><div><b>Range</b><br><small>Signs to plates to apparel</small></div></div>
-</div></div></section>
-
-<section id="shop"><div class="wrap">
-<h2>Products &amp; pricing</h2>
-<p class="lead">Browse the range, then request a quote by form or WhatsApp. We confirm price, timing and delivery with you directly.</p>
-<input class="search" id="q" type="search" placeholder="Search products" aria-label="Search products">
-<div class="chips" id="shopChips" role="group" aria-label="Filter products"></div>
-<div class="grid" id="shopGrid" aria-live="polite"></div>
+<section id="products"><div class="wrap">
+<h2>Products &amp; Services</h2>
+<p class="lead">Browse our range, see prices where available, and add what you need to your quote list. We confirm final pricing, timing and delivery with you directly.</p>
+<input class="search" id="q" type="search" placeholder="Search products and services" aria-label="Search products and services">
+<div class="cats" id="cats" role="group" aria-label="Filter by category"></div>
+<div id="catalog" aria-live="polite"></div>
 </div></section>
 
 <section id="work" class="alt"><div class="wrap">
-<h2>Our work</h2>
-<p class="lead">A look at the kinds of projects we deliver. Select one to enlarge.</p>
+<h2>Our Work</h2>
+<p class="lead">Completed Sign Base projects. Select an image to enlarge it.</p>
 <div class="chips" id="workChips" role="group" aria-label="Filter projects"></div>
 <div class="grid" id="workGrid"></div>
 </div></section>
 
-<section><div class="wrap">
-<h2>Why businesses choose Sign Base</h2><p class="lead"></p>
-<div class="grid">
-<div class="card"><h3>One supplier</h3><p>Signage, stickers, apparel and number plates from a single team.</p></div>
-<div class="card"><h3>Built to last</h3><p>Materials chosen for Botswana sun, dust and weather.</p></div>
-<div class="card"><h3>Quotes on WhatsApp</h3><p>Send your idea or a photo and get a response where you already chat.</p></div>
-<div class="card"><h3>Any size of order</h3><p>Order a sticker online or brief us on a large corporate project.</p></div>
-</div></div></section>
+<section id="about"><div class="wrap about2">
+<div class="abp"><img src="/logo.png" alt="Sign Base" width="250" height="28"><div class="abs"><div><b>2009</b><span>Established</span></div><div><b>17+</b><span>Years of experience</span></div></div></div>
+<div><h2 style="max-width:none;font-size:clamp(26px,3.4vw,36px)">About Us</h2>
+<p>Established in 2009, Sign Base is a trusted signage and branding company in Botswana. We specialise in designing, manufacturing and installing high-quality signage, corporate fascia, vehicle branding, stickers, printed apparel and number plates. With over 17 years of experience, we help businesses of all sizes stand out through quality workmanship, creative solutions and reliable service.</p></div>
+</div></section>
 
 <section id="contact" class="alt"><div class="wrap contact">
-<div><h2>Contact us</h2><p class="lead">Send the quote form and our sales team will reply by email. You also get a confirmation copy. Prefer to chat? Use WhatsApp.</p>
+<div><h2>Contact Us</h2><p class="lead">Questions about our products or services? Send us a message, call, or chat on WhatsApp. For prices on specific items, use <button class="lnk" type="button" data-openq>Request a Quote</button>.</p>
 <a class="line" href="tel:+26772300430">72300430 (Phone / WhatsApp)</a>
 <a class="line" href="tel:+26772100061">72100061 (Phone)</a>
 <a class="line" href="mailto:salessignbase1@gmail.com">salessignbase1@gmail.com</a>
 <a class="line" href="mailto:mnoorsplendid@gmail.com">mnoorsplendid@gmail.com</a>
 <address style="font-style:normal;margin:16px 0 14px"><b>Visit us</b><br>Sign Base, Unit 7, Plot 22019<br>Gaborone, Botswana</address>
-<p class="row" style="margin:0 0 16px"><a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Sign+Base%2C+Unit+7%2C+Plot+22019%2C+Gaborone%2C+Botswana" target="_blank" rel="noopener noreferrer">Get directions</a></p>
-<iframe class="map" title="Map showing the Sign Base location in Gaborone" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Sign+Base%2C+Unit+7%2C+Plot+22019%2C+Gaborone%2C+Botswana&amp;output=embed"></iframe>
-<a class="btn wa" data-wa="Hi Sign Base, I'd like to make an enquiry." href="#">Chat on WhatsApp</a></div>
-<form id="quote" novalidate>
-<h3 style="font-size:22px">Request a quote</h3>
-<div class="two"><div><label for="n">Name</label><input id="n" name="name" required autocomplete="name" maxlength="100"></div>
-<div><label for="co">Company (optional)</label><input id="co" name="company" autocomplete="organization" maxlength="100"></div></div>
-<div class="two"><div><label for="p">Contact number</label><input id="p" name="phone" type="tel" required autocomplete="tel" maxlength="30"></div>
-<div><label for="em">Email</label><input id="em" name="email" type="email" required autocomplete="email" maxlength="120"></div></div>
-<div><label for="s">Product / service category</label><select id="s" name="category"></select></div>
-<div class="two"><div><label for="qt">Quantity</label><input id="qt" name="quantity" required placeholder="e.g. 50 stickers, 1 sign" maxlength="80"></div>
-<div><label for="sz">Dimensions / specifications</label><input id="sz" name="dimensions" placeholder="e.g. 3m x 1m, white vinyl" maxlength="200"></div></div>
-<div><label for="m">Project description</label><textarea id="m" name="description" rows="4" required maxlength="3000"></textarea></div>
-<div><label for="fl">Artwork or reference files <span class="hint">(optional, up to 3 files, 5 MB total: PDF, PNG, JPG, WebP)</span></label><input id="fl" name="files" type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.webp" class="files"></div>
-<input type="hidden" name="ts" id="ts">
+<p class="row" style="margin:0 0 16px"><a class="btn wa" data-wa="Hi Sign Base, I'd like to make an enquiry." href="#">Chat on WhatsApp</a><a class="btn out" href="https://www.google.com/maps/search/?api=1&amp;query=Sign+Base%2C+Unit+7%2C+Plot+22019%2C+Gaborone%2C+Botswana" target="_blank" rel="noopener noreferrer">Get directions</a></p>
+<iframe class="map" title="Map showing the Sign Base location in Gaborone" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Sign+Base%2C+Unit+7%2C+Plot+22019%2C+Gaborone%2C+Botswana&amp;output=embed"></iframe></div>
+<form id="cf" novalidate>
+<h3 style="font-size:22px">Send us a message</h3>
+<div class="two"><div><label for="cn">Full Name</label><input id="cn" name="name" required autocomplete="name" maxlength="100"></div>
+<div><label for="cco">Company Name (optional)</label><input id="cco" name="company" autocomplete="organization" maxlength="100"></div></div>
+<div class="two"><div><label for="cp">Phone Number</label><input id="cp" name="phone" type="tel" required autocomplete="tel" maxlength="30"></div>
+<div><label for="ce">Email Address</label><input id="ce" name="email" type="email" required autocomplete="email" maxlength="120"></div></div>
+<div><label for="cs">Service Required</label><select id="cs" name="service"></select></div>
+<div><label for="cm">Message</label><textarea id="cm" name="message" rows="4" required maxlength="3000"></textarea></div>
+<input type="hidden" name="ts" id="cts">
 <p style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave empty <input name="website" tabindex="-1" autocomplete="off"></label></p>
-<div id="ts-box"></div>
-<button class="btn" type="submit" id="sb">Send quote request</button>
-<p class="note" id="fe" role="status" aria-live="polite"></p>
+<button class="btn" type="submit" id="cb">Send message</button>
+<p class="note" id="cstat" role="status" aria-live="polite"></p>
 </form>
 </div></section>
 </main>
 
 <footer><div class="wrap">
-<div><img src="/logo.png" alt="Sign Base" width="250" height="28" style="margin-bottom:10px">Signage, printing and number plates.<br>Unit 7, Plot 22019, Gaborone, Botswana<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Sign+Base%2C+Unit+7%2C+Plot+22019%2C+Gaborone%2C+Botswana" target="_blank" rel="noopener noreferrer">Get directions</a></div>
+<div><img src="/logo.png" alt="Sign Base" width="250" height="28" style="margin-bottom:10px"><br>Signage, printing and number plates.<br>Unit 7, Plot 22019, Gaborone, Botswana<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Sign+Base%2C+Unit+7%2C+Plot+22019%2C+Gaborone%2C+Botswana" target="_blank" rel="noopener noreferrer">Get directions</a></div>
 <div><h4>Follow us</h4><a href="https://www.instagram.com/Sign_base_bw" target="_blank" rel="noopener noreferrer">Instagram @Sign_base_bw</a><br><a href="https://www.facebook.com/Sign_base_bw" target="_blank" rel="noopener noreferrer">Facebook Sign_base_bw</a><br><span>TikTok coming soon</span></div>
-<div><h4>Contact</h4>72300430 · 72100061<br>salessignbase1@gmail.com</div>
+<div><h4>Contact</h4>72300430 &middot; 72100061<br>salessignbase1@gmail.com</div>
 </div></footer>
 
-<a class="fab" data-wa="Hi Sign Base, I'd like to make an enquiry." href="#" aria-label="Chat on WhatsApp"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.800 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 2c.1.2.1.300 0 .5l-.4.500c-.1.2-.3.3-.1.600.2.300.8 1.300 1.700 2.100 1.100 1 2.100 1.300 2.400 1.500.3.100.5.100.6-.1l.9-1.100c.2-.3.400-.2.600-.1l1.900.9c.3.100.5.200.5.300.1.2.1.800-.1 1.400z"/></svg></a>
+<a class="fab" data-wa="Hi Sign Base, I'd like to make an enquiry." href="#" aria-label="Chat on WhatsApp"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.5c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg></a>
 
-<dialog id="lb"><div style="position:relative"><button class="x" style="position:absolute;right:10px;top:6px;color:#fff;z-index:2" onclick="lb.close()" aria-label="Close">×</button><div id="lbBody"></div></div></dialog>
+<dialog id="pd" aria-label="Product details"><div class="dh2"><h3 id="pdT">Product details</h3><button class="x" type="button" data-close="pd" aria-label="Close">&times;</button></div><div id="pdBody"></div></dialog>
+
+<dialog id="qd" aria-label="My Quote List"><div class="dh2"><h3>My Quote List</h3><button class="x" type="button" data-close="qd" aria-label="Close">&times;</button></div>
+<div class="dbody">
+<div id="qBody"><p class="note" style="margin:0 0 14px">Add the products you need, tell us the details, and send one combined quotation request. This is not a purchase: no payment is taken.</p>
+<div id="qItems"></div>
+<div class="qadd"><select id="qAdd" aria-label="Add another product"></select><button class="btn sm dk" type="button" id="qAddBtn">Add to list</button></div>
+<form id="qf" novalidate>
+<h4 style="margin-bottom:10px">Your details</h4>
+<div class="two"><div><label for="qn">Full Name</label><input id="qn" name="name" required autocomplete="name" maxlength="100"></div>
+<div><label for="qc">Company / Business Name (optional)</label><input id="qc" name="company" autocomplete="organization" maxlength="100"></div></div>
+<div class="two" style="margin-top:10px"><div><label for="qp">Phone Number</label><input id="qp" name="phone" type="tel" required autocomplete="tel" maxlength="30"></div>
+<div><label for="qe">Email Address</label><input id="qe" name="email" type="email" required autocomplete="email" maxlength="120"></div></div>
+<div style="margin-top:10px"><label for="qm">Preferred Contact Method</label><select id="qm" name="contact_method"><option>WhatsApp</option><option>Phone</option><option>Email</option></select></div>
+<input type="hidden" name="ts" id="qts">
+<p style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave empty <input name="website" tabindex="-1" autocomplete="off"></label></p>
+<div class="row" style="margin-top:18px"><button class="btn" type="submit" id="qSend">Submit quotation request</button><button class="btn wa" type="button" id="qWA">Send via WhatsApp instead</button></div>
+<p class="note" id="qStat" role="status" aria-live="polite"></p>
+</form></div>
+<div id="qDone" class="done" hidden><h3>Thank you for choosing Sign Base!</h3><p id="qDoneMsg"></p><p style="margin-top:18px"><button class="btn" type="button" data-close="qd">Close</button></p></div>
+</div></dialog>
+
+<dialog id="lb" aria-label="Project image"><div style="position:relative"><button class="x" style="position:absolute;right:10px;top:6px;color:#fff;z-index:2" data-close="lb" aria-label="Close">&times;</button><div id="lbBody"></div><div class="row" style="padding:0 22px 16px"><button class="btn sm out" type="button" id="lbPrev">Previous</button><button class="btn sm out" type="button" id="lbNext">Next</button></div></div></dialog>
 <div id="toast" role="status"></div>
 
 <script>
-/* ===== EDIT HERE: business data ===== */
-const WA="26772300430";
-// price: number in BWP, or null = "price on request" (WhatsApp quote only). Prices below are SAMPLE values: replace with real prices before launch.
-const SHOP=[
- {id:"st1",name:"Bubble sticker",cat:"Printing & Branding",price:22.5,unit:"each",img:"bubble-stickers.jpg",note:"Custom printed. Send your artwork with your quote request."},
- {id:"st2",name:"Vinyl logo sticker",cat:"Printing & Branding",price:null,unit:"per square metre",img:"corporate-signage3.jpg",note:"Priced per square metre. Tell us the size for an exact quote."},
- {id:"ts1",name:"Branded T-shirt",cat:"Printing & Branding",price:225,unit:"each",img:"t-shirt-printing.jpg",note:"Print included. Sizes confirmed with your quote."},
- {id:"dt1",name:"Double-sided tape",cat:"Business Supplies",price:110,unit:"",img:"",note:"Part of our growing business supplies range."},
- {id:"np1",name:"Vehicle number plate",cat:"Automotive",price:null,unit:"",img:"number-plates.jpg",note:"Subject to applicable regulations and documents."},
- {id:"sg1",name:"Shopfront / business sign",cat:"Signage",price:null,unit:"",img:"corporate-signage1.jpg",note:"Custom size, material and lighting."}
+/* ===== EDIT HERE: business data =====
+   Products: price = number in BWP (or null when no approved price), unit = pricing unit text (or "").
+   Products without a price show "Request a Quote". Images live in /images/ (leave images empty for a neutral tile). */
+const WA="26772300430",QUOTE_EMAIL="salessignbase1@gmail.com";
+const CUSTOM_NOTE="Price shown is for the standard item. Customised specifications may require a separate quotation.";
+const PRODUCTS=[
+ {id:"corp-building",cat:"Corporate & Building Signage",name:"Corporate & building signage",desc:"Professionally manufactured signs for offices, shopfronts and commercial buildings.",details:["Made to your dimensions","Indoor and outdoor options","Illuminated and non-illuminated options","Installation available"],images:["corporate-signage1.jpg"],price:null,unit:"",qtype:"signage"},
+ {id:"totems",cat:"Corporate & Building Signage",name:"Totem & pylon signs",desc:"Large-format totems for shopping centres and multi-tenant sites, with branded tenant panels.",details:["Large-format construction","Branded tenant panels","Consistent brand colours","Installation available"],images:["fuel-station-signage.jpg"],price:null,unit:"",qtype:"signage"},
+ {id:"filling-station",cat:"Corporate & Building Signage",name:"Filling station signage",desc:"Illuminated totems and branding for fuel retail sites, built to corporate specifications.",details:["Illuminated totem signs","Built to brand specifications","Consistent finish across sites","Installation available"],images:["corporate-signage5.jpg","fuel-station-signage2.jpg"],price:null,unit:"",qtype:"signage"},
+ {id:"fascia",cat:"Corporate Fascia Signage",name:"Corporate fascia & canopy branding",desc:"Fascia and canopy signage that gives your premises a consistent, professional look.",details:["Canopy and fascia branding","Brand-spec colours and lettering","Multi-site rollouts","Installation available"],images:["fuel-station-signage1.jpg"],price:null,unit:"",qtype:"signage"},
+ {id:"tenant-boards",cat:"Corporate Fascia Signage",name:"Tenant & shopfront signboards",desc:"Signboards for retail centres and shopfronts, supplied for single or multiple tenants.",details:["Single or multiple boards","Printed to your artwork","Installation available"],images:["corporate-signage2.jpg"],price:null,unit:"",qtype:"signage"},
+ {id:"vehicle",cat:"Vehicle Branding",name:"Vehicle branding",desc:"Full wraps, partial wraps and decals that turn company vehicles into moving adverts.",details:["Full wraps","Partial wraps","Decals","Single vehicles or fleets"],images:[],price:null,unit:"",qtype:"vehicle"},
+ {id:"bubble",cat:"Stickers & Labels",name:"Bubble stickers",desc:"Custom printed bubble stickers for branding, packaging and promotions.",details:["Custom printed to your artwork","Quantities to suit your order"],images:["bubble-stickers.jpg"],price:22.5,unit:"each",custom:true,qtype:"stickers"},
+ {id:"vinyl-logo",cat:"Stickers & Labels",name:"Vinyl logo stickers",desc:"Vinyl logo and decal printing for walls, windows, vehicles and signage.",details:["Priced per square metre","Cut and printed to your design"],images:["corporate-signage3.jpg"],price:null,unit:"per square metre",qtype:"stickers"},
+ {id:"labels",cat:"Stickers & Labels",name:"Custom labels",desc:"Personalised printed labels for products, stationery and gifts.",details:["Printed to your artwork","Custom shapes and sizes"],images:["bubble-stickers1.jpg"],price:null,unit:"",qtype:"stickers"},
+ {id:"tshirt",cat:"T-Shirt & Apparel Printing",name:"Branded T-shirt",desc:"T-shirts printed with your logo or design for teams, events and promotions.",details:["Print included","Sizes and colours confirmed with your quote"],images:["t-shirt-printing.jpg"],price:225,unit:"each",custom:true,qtype:"apparel"},
+ {id:"promo",cat:"Promotional & Printed Materials",name:"Promotional & printed materials",desc:"Branded and printed materials to promote your business.",details:["Tell us what you need and we will quote","Printed to your artwork"],images:[],price:null,unit:"",qtype:"general"},
+ {id:"tape",cat:"Business Supplies",name:"Double-sided tape",desc:"Double-sided tape for signage, mounting and general business use.",details:["Part of our growing business supplies range"],images:[],price:110,unit:"",qtype:"general"},
+ {id:"plates",cat:"Number Plates",name:"Vehicle number plates",desc:"Number plates for individual vehicles and car dealerships.",details:["Individual and dealership orders","Custom number plate services subject to applicable regulations"],images:["number-plates.jpg"],price:null,unit:"",qtype:"plates"},
+ {id:"custom-3d",cat:"Custom Signs",name:"3D lettering & logo signs",desc:"Raised lettering and logo marks with a polished finish for interiors and shopfronts.",details:["Made to your design and dimensions","Interior and exterior options"],images:["corporate-signage4.jpg"],price:null,unit:"",qtype:"custom"},
+ {id:"custom-backlit",cat:"Custom Signs",name:"Backlit & illuminated signs",desc:"Halo-lit and illuminated lettering and logos that stand out day and night.",details:["Backlit lettering and logos","Made to your design and dimensions","Installation available"],images:["corporate-signage.jpg"],price:null,unit:"",qtype:"custom"}
 ];
-const SERVICES=[
- ["Signage","Corporate, commercial and large-format signs, filling station installations and small business signs."],
- ["Printing & Branding","Bubble and custom stickers, T-shirt printing, promotional and branded materials."],
- ["Automotive","Vehicle number plates and plates for car dealerships, subject to regulations."],
- ["Business Supplies","Double-sided tape and more products being added to the range."]
-];
+const OTHER={id:"other",cat:"General enquiry",name:"Other / not listed",qtype:"general"};
 const PROJECTS=[
- {t:"Illuminated filling station totem",c:"Filling Station",d:"Backlit totem sign for a fuel retail site.",image:"corporate-signage5.jpg"},
- {t:"Filling station canopy branding",c:"Filling Station",d:"Canopy fascia and lettering for a new forecourt.",image:"fuel-station-signage1.jpg"},
- {t:"Filling station fascia and flags",c:"Filling Station",d:"Canopy signage with promotional teardrop flags.",image:"fuel-station-signage2.jpg"},
- {t:"Shopping centre totem",c:"Corporate",d:"Multi-tenant totem with branded tenant panels.",image:"fuel-station-signage.jpg"},
- {t:"Tenant signboards",c:"Corporate",d:"Rooftop tenant signboards across a retail centre.",image:"corporate-signage2.jpg"},
- {t:"Restaurant shopfront lettering",c:"Shopfront",d:"Dimensional lettering mounted on a slatted facade.",image:"corporate-signage1.jpg"},
- {t:"Backlit lettering and logo",c:"Shopfront",d:"Halo-lit metal lettering and logo mark.",image:"corporate-signage.jpg"},
- {t:"3D wall lettering and logo",c:"Shopfront",d:"Raised metallic-finish logo and lettering for a retail interior.",image:"corporate-signage4.jpg"},
-  {t:"Bubble sticker",c:"Stickers & Printing",d:"Round printed sticker with a glossy finish.",image:"bubble-stickers.jpg"},
- {t:"Printed wall decal",c:"Stickers & Printing",d:"Large-format printed vinyl decal for an interior wall.",image:"corporate-signage3.jpg"},
- {t:"Custom name labels",c:"Stickers & Printing",d:"Personalised printed labels with artwork.",image:"bubble-stickers1.jpg"},
- {t:"Sublimated team wear",c:"Team T-shirts",d:"Full-colour sublimation printing for a motorsport team.",image:"t-shirt-printing.jpg"},
+ {t:"Illuminated filling station totem",c:"Filling Station Signage",d:"Backlit totem sign for a fuel retail site.",image:"corporate-signage5.jpg"},
+ {t:"Filling station canopy branding",c:"Filling Station Signage",d:"Canopy fascia and lettering for a new forecourt.",image:"fuel-station-signage1.jpg"},
+ {t:"Filling station fascia and flags",c:"Filling Station Signage",d:"Canopy signage with promotional teardrop flags.",image:"fuel-station-signage2.jpg"},
+ {t:"Shopping centre totem",c:"Corporate Branding",d:"Multi-tenant totem with branded tenant panels.",image:"fuel-station-signage.jpg"},
+ {t:"Tenant signboards",c:"Corporate Branding",d:"Rooftop tenant signboards across a retail centre.",image:"corporate-signage2.jpg"},
+ {t:"Restaurant shopfront lettering",c:"Building Signage",d:"Dimensional lettering mounted on a slatted facade.",image:"corporate-signage1.jpg"},
+ {t:"Backlit lettering and logo",c:"Custom Signage",d:"Halo-lit metal lettering and logo mark.",image:"corporate-signage.jpg"},
+ {t:"3D wall lettering and logo",c:"Custom Signage",d:"Raised metallic-finish logo and lettering for a retail interior.",image:"corporate-signage4.jpg"},
+ {t:"Bubble sticker",c:"Stickers & Labels",d:"Round printed sticker with a glossy finish.",image:"bubble-stickers.jpg"},
+ {t:"Printed wall decal",c:"Stickers & Labels",d:"Large-format printed vinyl decal for an interior wall.",image:"corporate-signage3.jpg"},
+ {t:"Custom name labels",c:"Stickers & Labels",d:"Personalised printed labels with artwork.",image:"bubble-stickers1.jpg"},
+ {t:"Printed team wear",c:"Apparel Printing",d:"Branded team jackets with printed logos and artwork.",image:"t-shirt-printing.jpg"},
  {t:"Number plates B 628 BNY and B 514 AGH",c:"Number Plates",d:"Pressed number plates in white and yellow.",image:"number-plates.jpg"}
 ];
+/* Product-specific quotation questions: [label, type (t text, s select, a textarea, f file), options or placeholder] */
+const QF={
+ signage:[["Signage type","s",["Building / shopfront sign","Corporate fascia","Totem / pylon","Filling station signage","Directional signage","Other"]],["Width","t","e.g. 3 m"],["Height","t","e.g. 1 m"],["Indoor or outdoor","s",["Outdoor","Indoor","Both"]],["Illuminated","s",["Illuminated","Non-illuminated","Not sure"]],["Installation required","s",["Yes","No","Not sure"]],["Additional specifications","a",""]],
+ vehicle:[["Vehicle type","t","e.g. bakkie, truck, van"],["Vehicle make and model","t",""],["Branding type","s",["Full wrap","Partial wrap","Decals"]],["Number of vehicles","t","e.g. 3"],["Vehicle photographs","f","Upload photos of the vehicle(s)"]],
+ stickers:[["Sticker type","s",["Bubble sticker","Vinyl logo sticker","Label","Other"]],["Dimensions","t","e.g. 10 cm x 10 cm"],["Shape","s",["Round","Square","Rectangle","Custom cut"]],["Material preference","t","e.g. gloss vinyl"],["Indoor or outdoor use","s",["Indoor","Outdoor","Both"]],["Artwork or reference (optional)","f",""]],
+ apparel:[["Garment type","t","e.g. T-shirt"],["Sizes","t","e.g. 5 x M, 10 x L"],["Colours","t","e.g. navy, white"],["Printing requirements","a","Logo placement, number of colours, etc."],["Artwork or design","f",""]],
+ plates:[["Plate type","s",["Standard vehicle plate","Dealership plates","Other"]],["Additional requirements","a",""]],
+ custom:[["Sign type","t","e.g. 3D lettering, backlit sign"],["Dimensions","t","e.g. 2 m x 0.5 m"],["Material preference","t",""],["Installation requirements","s",["Installation required","Supply only","Not sure"]],["Project description","a",""],["Reference images (optional)","f",""]],
+ general:[["Details","a","Tell us what you need"],["Reference files (optional)","f",""]]
+};
 /* ===== end ===== */
-const $=s=>document.querySelector(s),P=n=>"P"+n.toFixed(2);
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const wa=m=>`https://wa.me/${WA}?text=${encodeURIComponent(m)}`;
-function bindWA(r=document){r.querySelectorAll("[data-wa]").forEach(a=>{a.href=wa(a.dataset.wa);a.target="_blank";a.rel="noopener"})}
-function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2200)}
-$("#burger").onclick=e=>{const o=$("#nav").classList.toggle("open");e.currentTarget.setAttribute("aria-expanded",o)};
-$("#nav").onclick=e=>{if(e.target.tagName==="A")$("#nav").classList.remove("open")};
-$("#svcGrid").innerHTML=SERVICES.map(([n,d])=>`<div class="card"><div class="ico">${n[0]}</div><h3>${n}</h3><p>${d}</p><div class="row"><a class="btn sm ghost" style="color:var(--or)" href="#shop" data-cat="${n}">View products</a></div></div>`).join("");
-
-
-/* Shop */
-let cat="All";
-const cats=["All",...new Set(SHOP.map(p=>p.cat))];
-function chips(el,list,cur,fn){el.innerHTML=list.map(c=>`<button class="chip" aria-pressed="${c===cur}">${c}</button>`).join("");el.onclick=e=>{if(e.target.matches(".chip")){fn(e.target.textContent)}}}
-function renderShop(){
- chips($("#shopChips"),cats,cat,c=>{cat=c;renderShop()});
- const q=$("#q").value.toLowerCase();
- const L=SHOP.filter(p=>(cat==="All"||p.cat===cat)&&p.name.toLowerCase().includes(q));
- $("#shopGrid").innerHTML=L.length?L.map(p=>{
-   return `<div class="card"><div class="pimg">${p.img?`<img src="/images/${p.img}" alt="${p.name}" loading="lazy">`:`<span style="font-size:15px;padding:12px;text-align:center">${p.name.toUpperCase()}</span>`}</div><h3>${p.name}</h3>
-  <div class="price">${p.price!==null?P(p.price)+(p.unit?" <small>"+p.unit+"</small>":""):"<small>"+(p.unit||"Quote on request")+"</small>"}</div><p class="stock">${p.note}</p>
-  <div class="row"><a class="btn sm" href="#quote" data-quote="${p.name}">Request a quote</a><a class="btn sm wa" data-wa="Hi Sign Base, I'd like to enquire about: ${p.name}." href="#">WhatsApp</a></div></div>`}).join(""):`<div class="empty">No products match your search. Try another word or clear the filter.</div>`;
- bindWA($("#shopGrid"));
-}
-$("#q").oninput=renderShop;
+const bindWA=(r=document)=>r.querySelectorAll("[data-wa]").forEach(a=>{a.href=wa(a.dataset.wa);a.target="_blank";a.rel="noopener noreferrer"});
+const toast=m=>{const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2400)};
+const money=n=>"P"+(Number.isInteger(n)?n.toLocaleString("en-US"):n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}));
+const priceText=p=>p.price!=null?money(p.price)+(p.unit?" / "+p.unit:""):"Request a Quote"+(p.unit?" ("+p.unit+")":"");
+const byId=id=>id==="other"?OTHER:PRODUCTS.find(p=>p.id===id);
+$("#burger").onclick=e=>{const o=$("#menu").classList.toggle("open");e.currentTarget.setAttribute("aria-expanded",o)};
+$("#menu").addEventListener("click",e=>{if(e.target.closest("a,button"))$("#menu").classList.remove("open")});
 document.addEventListener("click",e=>{
- const v=e.target.closest("[data-cat]");if(v){cat=v.dataset.cat;$("#q").value="";renderShop()}
- const k=e.target.closest("[data-quote]");if(k){e.preventDefault();setProduct(k.dataset.quote);$("#quote").scrollIntoView({behavior:"smooth",block:"center"});setTimeout(()=>$("#n").focus(),400)}
+ const c=e.target.closest("[data-close]");if(c)$("#"+c.dataset.close).close();
+ if(e.target.closest("[data-openq]")){e.preventDefault();openQuote()}
 });
+["pd","qd","lb"].forEach(id=>$("#"+id).addEventListener("click",e=>{if(e.target.id===id)e.target.close()}));
 
-/* Portfolio */
-const COL={"Filling Station":1,"Corporate":1,"Shopfront":1,"Stickers & Printing":1,"Team T-shirts":1,"Number Plates":1};
-let wc="All";const wcats=["All",...Object.keys(COL)];
-const art=p=>`<div class="art"><img src="/images/${p.image}" alt="${p.t}" loading="lazy"></div>`;
+/* ---------- Catalogue ---------- */
+let cat="All";
+const usedCats=[...new Set(PRODUCTS.map(p=>p.cat))];
+function chips(el,list,cur,fn){el.innerHTML=list.map(c=>`<button class="chip" type="button" aria-pressed="${c===cur}">${esc(c)}</button>`).join("");el.onclick=e=>{if(e.target.matches(".chip"))fn(e.target.textContent)}}
+const media=(p,i=0)=>p.images&&p.images[i]?`<img src="/images/${p.images[i]}" alt="${esc(p.name)}" loading="lazy">`:`<div class="ph"><i>${esc(p.cat.split(/\W+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase())}</i><span>${esc(p.name)}</span></div>`;
+function priceHTML(p){
+ if(p.price!=null)return `<div class="pr"><span class="amt">${money(p.price)}</span>${p.unit?` <span class="u">/ ${esc(p.unit)}</span>`:""}</div>`;
+ return `<div class="pr"><span class="rq">Request a Quote</span>${p.unit?`<small>Priced ${esc(p.unit)}</small>`:""}</div>`;
+}
+function card(p){
+ const priced=p.price!=null;
+ return `<article class="pc"><button class="pci" type="button" data-view="${p.id}" aria-label="View details: ${esc(p.name)}">${media(p)}</button><div class="pcb"><h4>${esc(p.name)}</h4><p>${esc(p.desc)}</p>${priceHTML(p)}${p.custom?`<div class="pnote">${CUSTOM_NOTE}</div>`:""}
+ <div class="row"><button class="btn sm" type="button" data-add="${p.id}" data-open="1">${priced?"Enquire Now":"Get a Quote"}</button><button class="btn sm out" type="button" data-add="${p.id}">+ Add to list</button></div>
+ <div class="links"><button class="lnk" type="button" data-view="${p.id}">View details</button><a data-wa="Hi Sign Base, I'd like to enquire about: ${esc(p.name)} (${esc(priceText(p))})." href="#">WhatsApp</a>${p.custom?`<button class="lnk" type="button" data-add="${p.id}" data-open="1">Custom quote</button>`:""}</div></div></article>`;
+}
+function renderCatalog(){
+ chips($("#cats"),["All",...usedCats],cat,c=>{cat=c;renderCatalog()});
+ const q=$("#q").value.trim().toLowerCase();
+ const L=PRODUCTS.filter(p=>(cat==="All"||p.cat===cat)&&(!q||(p.name+" "+p.desc+" "+p.cat).toLowerCase().includes(q)));
+ const groups=usedCats.filter(c=>L.some(p=>p.cat===c));
+ $("#catalog").innerHTML=groups.length?groups.map(c=>`<h3 class="cathead">${esc(c)}</h3><div class="pgrid">${L.filter(p=>p.cat===c).map(card).join("")}</div>`).join(""):`<div class="empty">No products match your search. Try another word or clear the filter.</div>`;
+ bindWA($("#catalog"));
+}
+$("#q").oninput=renderCatalog;
+$("#catalog").addEventListener("click",e=>{
+ const a=e.target.closest("[data-add]");if(a){addToQuote(a.dataset.add,!!a.dataset.open);return}
+ const v=e.target.closest("[data-view]");if(v)openDetail(v.dataset.view);
+});
+function openDetail(id){
+ const p=byId(id);let cur=0;
+ const draw=()=>{
+  $("#pdBody").innerHTML=`<div class="pd"><div><div class="pdm">${media(p,cur)}</div>${p.images.length>1?`<div class="thumbs">${p.images.map((im,i)=>`<button type="button" data-th="${i}" aria-current="${i===cur}" aria-label="Image ${i+1}"><img src="/images/${im}" alt=""></button>`).join("")}</div>`:""}</div>
+  <div class="pdi"><div class="stock">${esc(p.cat)}</div><h3>${esc(p.name)}</h3>${priceHTML(p)}${p.custom?`<div class="pnote" style="margin-top:6px">${CUSTOM_NOTE}</div>`:""}<p style="margin:12px 0;color:var(--gr)">${esc(p.desc)}</p>
+  <b>Specifications and options</b><ul class="dl">${p.details.map(d=>`<li>${esc(d)}</li>`).join("")}</ul>
+  <div class="row"><button class="btn" type="button" data-pdq>${p.price!=null?"Enquire Now":"Get a Quote"}</button><button class="btn sm out" type="button" data-pda>+ Add to list</button><a class="btn sm wa" data-wa="Hi Sign Base, I'd like to enquire about: ${esc(p.name)} (${esc(priceText(p))})." href="#">WhatsApp</a></div></div></div>`;
+  bindWA($("#pdBody"));
+ };
+ $("#pdT").textContent=p.name;draw();
+ $("#pdBody").onclick=e=>{const t=e.target.closest("[data-th]");if(t){cur=+t.dataset.th;draw()}
+  if(e.target.closest("[data-pdq]")){$("#pd").close();addToQuote(id,true)}
+  if(e.target.closest("[data-pda]"))addToQuote(id,false)};
+ $("#pd").showModal();
+}
+
+/* ---------- My Quote List ---------- */
+let Q=[];
+try{Q=(JSON.parse(localStorage.getItem("sb_quote")||"[]")||[]).filter(i=>byId(i.pid)).map(i=>({...i,files:[]}))}catch(_){Q=[]}
+const saveQ=()=>{try{localStorage.setItem("sb_quote",JSON.stringify(Q.map(({files,...r})=>r)))}catch(_){}$("#qCount").textContent=Q.length};
+function addToQuote(pid,open){
+ const p=byId(pid),ex=Q.find(i=>i.pid===pid);
+ if(ex){toast("Already in your quote list")}else{Q.push({pid,name:p.name,cat:p.cat,qtype:p.qtype,qty:"1",notes:"",specs:{},files:[]});toast("Added to your quote list")}
+ saveQ();if(open)openQuote();else renderQ();
+}
+function fieldHTML(i,j,[k,t,o],it){
+ const id=`qs${i}_${j}`,v=esc(it.specs[k]||"");
+ if(t==="s")return `<div><label for="${id}">${esc(k)}</label><select id="${id}" data-k="${esc(k)}"><option value="">Select...</option>${o.map(x=>`<option${it.specs[k]===x?" selected":""}>${esc(x)}</option>`).join("")}</select></div>`;
+ if(t==="a")return `<div class="qfull"><label for="${id}">${esc(k)}</label><textarea id="${id}" data-k="${esc(k)}" rows="2" maxlength="300" placeholder="${esc(o)}">${v}</textarea></div>`;
+ if(t==="f")return `<div class="qfull"><label for="${id}">${esc(k)}</label><input id="${id}" type="file" data-file="${i}" multiple accept=".pdf,.png,.jpg,.jpeg,.webp"><div class="fnames">${it.files.length?esc(it.files.map(f=>f.name).join(", ")):"Up to 3 files: PDF, PNG, JPG or WebP"}</div></div>`;
+ return `<div><label for="${id}">${esc(k)}</label><input id="${id}" data-k="${esc(k)}" maxlength="300" value="${v}" placeholder="${esc(o)}"></div>`;
+}
+function renderQ(){
+ $("#qItems").innerHTML=Q.length?Q.map((it,i)=>`<div class="qi"><div class="qih"><div><b>${esc(it.name)}</b><div class="stock">${esc(it.cat)}</div></div><button type="button" class="lnk" data-rm="${i}">Remove</button></div>
+ <div class="qgrid"><div><label for="qq${i}">Quantity</label><input id="qq${i}" data-f="qty" inputmode="numeric" maxlength="40" value="${esc(it.qty)}" placeholder="e.g. 50"></div><div></div>
+ ${(QF[it.qtype]||QF.general).map((f,j)=>fieldHTML(i,j,f,it)).join("")}
+ <div class="qfull"><label for="qno${i}">Notes for this product</label><textarea id="qno${i}" data-f="notes" rows="2" maxlength="1000">${esc(it.notes)}</textarea></div></div></div>`).join(""):`<div class="empty" style="margin-bottom:14px">Your quote list is empty. Choose a product below, or add items from Products &amp; Services.</div>`;
+ const have=new Set(Q.map(i=>i.pid));
+ $("#qAdd").innerHTML=`<option value="">Choose a product or service...</option>`+[...PRODUCTS,OTHER].filter(p=>!have.has(p.id)).map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join("");
+ $("#qCount").textContent=Q.length;
+}
+$("#qAddBtn").onclick=()=>{const v=$("#qAdd").value;if(v)addToQuote(v,false);else toast("Choose a product first")};
+$("#qItems").addEventListener("input",e=>{const t=e.target,row=t.closest(".qi");if(!row)return;const i=[...$("#qItems").children].indexOf(row),it=Q[i];if(!it)return;
+ if(t.dataset.f)it[t.dataset.f]=t.value;else if(t.dataset.k)it.specs[t.dataset.k]=t.value;saveQ()});
+$("#qItems").addEventListener("change",e=>{const t=e.target;if(!t.dataset.file)return;const it=Q[+t.dataset.file],fs=[...t.files];
+ const bad=fs.find(f=>!/\.(pdf|png|jpe?g|webp)$/i.test(f.name));
+ const others=Q.reduce((s,x)=>x===it?s:s+x.files.reduce((a,f)=>a+f.size,0),0),tot=others+fs.reduce((a,f)=>a+f.size,0);
+ if(fs.length>3||bad||tot>8*1024*1024){t.value="";it.files=[];toast(fs.length>3?"Please choose up to 3 files per product":bad?"Only PDF, PNG, JPG and WebP files are accepted":"Files must total 8 MB or less");}else it.files=fs;
+ t.closest("div").querySelector(".fnames").textContent=it.files.length?it.files.map(f=>f.name).join(", "):"Up to 3 files: PDF, PNG, JPG or WebP"});
+$("#qItems").addEventListener("click",e=>{const r=e.target.closest("[data-rm]");if(r){Q.splice(+r.dataset.rm,1);saveQ();renderQ()}});
+function openQuote(){$("#qBody").hidden=false;$("#qDone").hidden=true;$("#qStat").textContent="";$("#qts").value=Date.now();renderQ();if(!$("#qd").open)$("#qd").showModal()}
+const qSummary=()=>Q.map((it,n)=>`${n+1}. ${it.name} - qty ${it.qty||"?"}`+Object.entries(it.specs).filter(([,v])=>v).map(([k,v])=>`; ${k}: ${v}`).join("")+(it.notes?`; Notes: ${it.notes}`:"")).join("\n");
+$("#qWA").onclick=()=>{if(!Q.length){$("#qStat").className="note bad";$("#qStat").textContent="Add at least one product to your quote list first.";return}
+ const f=$("#qf");window.open(wa("Hi Sign Base, I'd like a quote for:\n"+qSummary()+(f.name.value?"\nName: "+f.name.value:"")+(f.phone.value?"\nPhone: "+f.phone.value:"")),"_blank","noopener")};
+$("#qf").onsubmit=async e=>{e.preventDefault();
+ const f=e.target,st=$("#qStat"),b=$("#qSend"),bad=m=>{st.className="note bad";st.textContent=m};
+ if(!Q.length)return bad("Please add at least one product to your quote list.");
+ if(Q.some(i=>!String(i.qty).trim()))return bad("Please enter a quantity for every product.");
+ if(!f.elements.name.value.trim()||!f.elements.phone.value.trim()||!f.elements.email.value||!f.elements.email.validity.valid)return bad("Please enter your name, phone number and a valid email address.");
+ b.disabled=true;b.textContent="Sending...";st.className="note";st.textContent="";
+ const d=new FormData();["name","company","phone","email","contact_method","ts","website"].forEach(k=>d.append(k,f.elements[k].value));
+ d.append("items",JSON.stringify(Q.map(i=>({name:i.name,category:i.cat,qty:i.qty,notes:i.notes,specs:Object.fromEntries(Object.entries(i.specs).filter(([,v])=>v))}))));
+ Q.forEach((i,n)=>i.files.forEach(file=>d.append("file_"+n,file)));
+ try{
+  const r=await fetch("/api/quote",{method:"POST",body:d});const j=await r.json().catch(()=>({}));
+  if(!r.ok||!j.success)throw new Error(j.error||"");
+  $("#qDoneMsg").textContent="Your quotation request has been received. Our team will review your requirements and get back to you. Reference: "+j.ref+".";
+  Q=[];saveQ();f.reset();$("#qBody").hidden=true;$("#qDone").hidden=false;
+ }catch(err){
+  st.className="note bad";st.innerHTML=(err.message?esc(err.message)+" ":"We could not send your request. ")+`Nothing has been submitted. Please try again, <a href="mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent("Quote request")}&body=${encodeURIComponent(qSummary())}">email us</a> or use the WhatsApp button.`;
+ }
+ b.disabled=false;b.textContent="Submit quotation request";
+};
+
+/* ---------- Our Work ---------- */
+let wc="All",wl=[],li=0;
+const wcats=["All",...new Set(PROJECTS.map(p=>p.c))];
 function renderWork(){
  chips($("#workChips"),wcats,wc,c=>{wc=c;renderWork()});
- const L=PROJECTS.map((p,i)=>({...p,i})).filter(p=>wc==="All"||p.c===wc);
- $("#workGrid").innerHTML=L.length?L.map(p=>`<button class="tile" data-i="${p.i}">${art(p)}<span>${p.t}</span><small>${p.c}</small></button>`).join(""):`<div class="empty">No projects in this category yet.</div>`;
+ wl=PROJECTS.filter(p=>wc==="All"||p.c===wc);
+ $("#workGrid").innerHTML=wl.map((p,i)=>`<button class="tile" type="button" data-i="${i}"><div class="art"><img src="/images/${p.image}" alt="${esc(p.t)}" loading="lazy"></div><span>${esc(p.t)}</span><small>${esc(p.c)}</small></button>`).join("");
 }
-$("#workGrid").onclick=e=>{const t=e.target.closest(".tile");if(!t)return;const p=PROJECTS[t.dataset.i];
- $("#lbBody").innerHTML=`<img src="/images/${p.image}" alt="${p.t}">`+`<div style="padding:18px 22px"><h3>${p.t}</h3><p class="stock">${p.c}</p><p style="margin:8px 0 14px">${p.d}</p><a class="btn sm wa" data-wa="Hi Sign Base, I'd like something similar to: ${p.t}." href="#">Request something similar</a></div>`;
- bindWA($("#lbBody"));$("#lb").showModal()};
-$("#lb").onclick=e=>{if(e.target.id==="lb")e.target.close()};
+function showLb(){const p=wl[li];$("#lbBody").innerHTML=`<img src="/images/${p.image}" alt="${esc(p.t)}"><div style="padding:18px 22px"><h3>${esc(p.t)}</h3><p class="stock">${esc(p.c)}</p><p style="margin:8px 0 14px">${esc(p.d)}</p><a class="btn sm wa" data-wa="Hi Sign Base, I'd like something similar to: ${esc(p.t)}." href="#">Request something similar</a></div>`;bindWA($("#lbBody"))}
+$("#workGrid").onclick=e=>{const t=e.target.closest(".tile");if(!t)return;li=+t.dataset.i;showLb();$("#lb").showModal()};
+$("#lbPrev").onclick=()=>{li=(li-1+wl.length)%wl.length;showLb()};$("#lbNext").onclick=()=>{li=(li+1)%wl.length;showLb()};
 
-/* Quote form -> /api/quote (Cloudflare Pages Function) */
-const QUOTE_EMAIL="salessignbase1@gmail.com";
-const TURNSTILE_SITEKEY=""; // optional Cloudflare Turnstile site key (public). Also set TURNSTILE_SECRET on the server.
-const opts=[...SHOP.map(p=>p.name),"Corporate / filling station signage","Large-format signage","Other / not listed"];
-$("#s").innerHTML=opts.map(o=>`<option>${o}</option>`).join("");
-function setProduct(n){const s=$("#s");if(![...s.options].some(o=>o.value===n)){s.add(new Option(n,n))}s.value=n}
-$("#ts").value=Date.now();
-if(TURNSTILE_SITEKEY){const sc=document.createElement("script");sc.src="https://challenges.cloudflare.com/turnstile/v0/api.js";sc.async=true;document.head.appendChild(sc);$("#ts-box").innerHTML=`<div class="cf-turnstile" data-sitekey="${TURNSTILE_SITEKEY}"></div>`}
-$("#quote").onsubmit=async e=>{e.preventDefault();
- const f=e.target,fe=$("#fe"),b=$("#sb"),bad=m=>{fe.className="note bad";fe.textContent=m};
- if(!f.elements.name.value.trim()||!f.elements.phone.value.trim()||!f.elements.email.value||!f.elements.email.validity.valid||!f.elements.quantity.value.trim()||!f.elements.description.value.trim())return bad("Please fill in your name, contact number, a valid email, quantity and project description.");
- let tot=0;for(const x of f.elements.files.files)tot+=x.size;
- if(f.elements.files.files.length>3)return bad("Please attach no more than 3 files.");
- if(tot>5*1024*1024)return bad("Your files total more than 5 MB. Please send smaller files or share them on WhatsApp.");
- b.disabled=true;b.textContent="Sending...";fe.className="note";fe.textContent="";
+/* ---------- Contact form ---------- */
+$("#cs").innerHTML=[...usedCats,"Other / general enquiry"].map(o=>`<option>${esc(o)}</option>`).join("");
+$("#cts").value=Date.now();
+$("#cf").onsubmit=async e=>{e.preventDefault();
+ const f=e.target,st=$("#cstat"),b=$("#cb"),bad=m=>{st.className="note bad";st.textContent=m};
+ const el=f.elements;
+ if(!el.name.value.trim()||!el.phone.value.trim()||!el.email.value||!el.email.validity.valid||!el.message.value.trim())return bad("Please enter your name, phone, a valid email and your message.");
+ b.disabled=true;b.textContent="Sending...";st.className="note";st.textContent="";
  try{
-  const r=await fetch("/api/quote",{method:"POST",body:new FormData(f)});
-  const j=await r.json().catch(()=>({}));
+  const r=await fetch("/api/contact",{method:"POST",body:new FormData(f)});const j=await r.json().catch(()=>({}));
   if(!r.ok||!j.success)throw new Error(j.error||"");
-  f.reset();$("#ts").value=Date.now();if(window.turnstile)try{turnstile.reset()}catch(_){}
-  fe.className="note ok";fe.textContent="Thank you. Your quote request ("+j.ref+") has been sent and a confirmation is on its way to your email. We will contact you shortly.";
- }catch(err){
-  fe.className="note bad";fe.innerHTML=(err.message?err.message+" ":"We could not send your request. ")+"Please try again, <a href=\"mailto:"+QUOTE_EMAIL+"?subject="+encodeURIComponent("Quote request: "+f.elements.category.value)+"\">email us</a> or use WhatsApp.";
- }
- b.disabled=false;b.textContent="Send quote request";
+  f.reset();$("#cts").value=Date.now();st.className="note ok";st.textContent="Thank you for contacting Sign Base! Your message has been received and we will get back to you shortly.";
+ }catch(err){st.className="note bad";st.innerHTML=(err.message?esc(err.message)+" ":"We could not send your message. ")+`Nothing has been sent. Please try again, <a href="mailto:${QUOTE_EMAIL}">email us</a> or use WhatsApp.`}
+ b.disabled=false;b.textContent="Send message";
 };
-bindWA();renderShop();renderWork();
+bindWA();renderCatalog();renderWork();saveQ();
 </script>
 </body>
 </html>

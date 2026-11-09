@@ -1,111 +1,70 @@
-// Cloudflare Pages Function: POST /api/quote
-// Validates a quote request, emails the business, and emails an acknowledgement to the customer (via Resend).
-//
-// Environment (Pages > Settings > Variables and Secrets):
-//   RESEND_API_KEY   (secret, required)
-//   QUOTE_FROM       (required in production) e.g. "Sign Base <quotes@yourdomain.com>", domain verified in Resend
-//   QUOTE_TO         (optional) defaults to salessignbase1@gmail.com
-//   TURNSTILE_SECRET (optional secret) enables Cloudflare Turnstile verification
-//   ALLOWED_ORIGINS  (optional) comma-separated extra origins, e.g. "https://www.signbase.co.bw"
+// POST /api/quote: combined, multi-product quotation request.
+// Emails the business (Reply-To = customer) and sends the customer an acknowledgement, via Resend.
+// Env: RESEND_API_KEY (secret), QUOTE_FROM (verified sender), QUOTE_TO (optional), TURNSTILE_SECRET (optional), ALLOWED_ORIGINS (optional)
+import { DEFAULT_TO, json, esc, clip, validEmail, validPhone, makeRef, guard, sendEmail, toB64, rowsHtml } from "../../lib/common.js";
 
-const DEFAULT_TO = "salessignbase1@gmail.com";
-const MAX_FILES = 3, MAX_TOTAL = 5 * 1024 * 1024;
-const FILE_TYPES = { "application/pdf": "pdf", "image/png": "png", "image/jpeg": "jpg", "image/webp": "webp" };
-const MIN_FILL_MS = 3000, MAX_AGE_MS = 6 * 60 * 60 * 1000;
-
-const json = (o, status = 200) =>
-  new Response(JSON.stringify(o), { status, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
-const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const clip = (v, n) => String(v ?? "").replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "").trim().slice(0, n);
-
-function originOk(request, env) {
-  const origin = request.headers.get("Origin");
-  if (!origin) return false;
-  const allowed = new Set([new URL(request.url).origin, ...(env.ALLOWED_ORIGINS || "").split(",").map(x => x.trim()).filter(Boolean)]);
-  return allowed.has(origin);
-}
-
-async function turnstileOk(env, token, ip) {
-  if (!env.TURNSTILE_SECRET) return true;
-  if (!token) return false;
-  const body = new FormData();
-  body.append("secret", env.TURNSTILE_SECRET); body.append("response", token); if (ip) body.append("remoteip", ip);
-  const r = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body });
-  return !!(await r.json()).success;
-}
-
-async function sendEmail(env, payload) {
-  const r = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-  });
-  if (!r.ok) console.error("Resend error", r.status, await r.text().catch(() => ""));
-  return r.ok;
-}
-
-const toB64 = buf => { let s = ""; const b = new Uint8Array(buf); for (let i = 0; i < b.length; i += 0x8000) s += String.fromCharCode(...b.subarray(i, i + 0x8000)); return btoa(s); };
+const MAX_ITEMS = 20, MAX_FILES = 10, MAX_TOTAL = 8 * 1024 * 1024;
+const FILE_TYPES = { "application/pdf": 1, "image/png": 1, "image/jpeg": 1, "image/webp": 1 };
+const METHODS = ["WhatsApp", "Phone", "Email"];
 
 export async function onRequestPost({ request, env }) {
-  if (!originOk(request, env)) return json({ success: false, error: "Request blocked." }, 403);
-  if (!env.RESEND_API_KEY || !env.QUOTE_FROM) {
-    console.error("Missing RESEND_API_KEY or QUOTE_FROM");
-    return json({ success: false, error: "The quote service is not available right now." }, 500);
-  }
   let form;
   try { form = await request.formData(); } catch { return json({ success: false, error: "Invalid form submission." }, 400); }
+  const blocked = await guard(request, env, form);
+  if (blocked) return blocked;
 
-  // Spam checks: honeypot and timing
-  if (form.get("website")) return json({ success: true, ref: "SB-0000" }); // silently drop bots
-  const age = Date.now() - Number(form.get("ts"));
-  if (!(age >= MIN_FILL_MS && age <= MAX_AGE_MS)) return json({ success: false, error: "Please wait a moment and submit the form again." }, 429);
-  if (!(await turnstileOk(env, form.get("cf-turnstile-response"), request.headers.get("CF-Connecting-IP"))))
-    return json({ success: false, error: "Spam check failed. Please refresh and try again." }, 403);
+  const c = { name: clip(form.get("name"), 100), company: clip(form.get("company"), 100), phone: clip(form.get("phone"), 30),
+    email: clip(form.get("email"), 120), method: clip(form.get("contact_method"), 20) };
+  if (!c.name || !c.phone) return json({ success: false, error: "Please enter your name and phone number." }, 400);
+  if (!validEmail(c.email)) return json({ success: false, error: "Please enter a valid email address." }, 400);
+  if (!validPhone(c.phone)) return json({ success: false, error: "Please enter a valid phone number." }, 400);
+  if (!METHODS.includes(c.method)) return json({ success: false, error: "Please choose a preferred contact method." }, 400);
 
-  const f = {
-    name: clip(form.get("name"), 100), company: clip(form.get("company"), 100), email: clip(form.get("email"), 120),
-    phone: clip(form.get("phone"), 30), category: clip(form.get("category"), 150), quantity: clip(form.get("quantity"), 80),
-    dimensions: clip(form.get("dimensions"), 200), description: clip(form.get("description"), 3000)
-  };
-  if (!f.name || !f.phone || !f.quantity || !f.description || !f.category) return json({ success: false, error: "Please complete all required fields." }, 400);
-  if (!/^[^\s@,;<>]+@[^\s@,;<>]+\.[^\s@,;<>]{2,}$/.test(f.email)) return json({ success: false, error: "Please enter a valid email address." }, 400);
-  if (!/^[+0-9 ()-]{7,30}$/.test(f.phone)) return json({ success: false, error: "Please enter a valid contact number." }, 400);
+  let raw; try { raw = JSON.parse(String(form.get("items") || "[]")); } catch { raw = null; }
+  if (!Array.isArray(raw) || !raw.length || raw.length > MAX_ITEMS) return json({ success: false, error: "Please add at least one product to your quote list." }, 400);
+  const items = raw.map(it => ({
+    name: clip(it?.name, 150), category: clip(it?.category, 100), qty: clip(it?.qty, 40), notes: clip(it?.notes, 1000),
+    specs: Object.entries(it?.specs && typeof it.specs === "object" ? it.specs : {}).slice(0, 15)
+      .map(([k, v]) => [clip(k, 80), clip(v, 300)]).filter(([k, v]) => k && v)
+  }));
+  if (items.some(i => !i.name || !i.qty)) return json({ success: false, error: "Please enter a quantity for every product." }, 400);
 
-  // Attachments
-  const files = form.getAll("files").filter(x => x && typeof x === "object" && x.size > 0);
-  if (files.length > MAX_FILES) return json({ success: false, error: "Please attach no more than 3 files." }, 400);
-  let total = 0; const attachments = [];
-  for (const file of files) {
-    total += file.size;
-    if (total > MAX_TOTAL) return json({ success: false, error: "Attachments must total 5 MB or less." }, 400);
-    if (!FILE_TYPES[file.type]) return json({ success: false, error: "Only PDF, PNG, JPG and WebP files are accepted." }, 400);
-    const safe = clip(file.name, 80).replace(/[^\w.\- ]/g, "_") || `file.${FILE_TYPES[file.type]}`;
-    attachments.push({ filename: safe, content: toB64(await file.arrayBuffer()) });
+  const attachments = []; let total = 0;
+  for (const [key, val] of form.entries()) {
+    const m = /^file_(\d+)$/.exec(key);
+    if (!m || !val || typeof val !== "object" || !val.size) continue;
+    if (Number(m[1]) >= items.length) continue;
+    if (attachments.length >= MAX_FILES) return json({ success: false, error: "Too many attachments." }, 400);
+    total += val.size;
+    if (total > MAX_TOTAL) return json({ success: false, error: "Attachments must total 8 MB or less." }, 400);
+    if (!FILE_TYPES[val.type]) return json({ success: false, error: "Only PDF, PNG, JPG and WebP files are accepted." }, 400);
+    const safe = clip(val.name, 80).replace(/[^\w.\- ]/g, "_") || "file";
+    attachments.push({ filename: `item${Number(m[1]) + 1}-${safe}`, content: toB64(await val.arrayBuffer()) });
   }
 
-  const ref = "SB-" + Date.now().toString(36).toUpperCase().slice(-6);
-  const rows = [["Reference", ref], ["Name", f.name], ["Company", f.company || "-"], ["Email", f.email], ["Phone", f.phone],
-    ["Category", f.category], ["Quantity", f.quantity], ["Dimensions", f.dimensions || "-"], ["Description", f.description],
-    ["Attachments", attachments.length ? attachments.map(a => a.filename).join(", ") : "None"]];
-  const table = rows.map(([k, v]) => `<tr><td style="padding:6px 12px;font-weight:bold;vertical-align:top">${esc(k)}</td><td style="padding:6px 12px;white-space:pre-wrap">${esc(v)}</td></tr>`).join("");
+  const ref = makeRef();
+  const cust = [["Reference", ref], ["Name", c.name], ["Company", c.company || "-"], ["Phone", c.phone], ["Email", c.email], ["Preferred contact", c.method]];
+  const itemHtml = items.map((i, n) => `<h3 style="margin:18px 0 4px">${n + 1}. ${esc(i.name)}</h3><table>${rowsHtml([
+    ["Category", i.category || "-"], ["Quantity", i.qty], ...i.specs, ["Notes", i.notes || "-"]])}</table>`).join("");
+  const itemText = items.map((i, n) => `${n + 1}. ${i.name} (${i.category}) qty ${i.qty}\n` + i.specs.map(([k, v]) => `   ${k}: ${v}`).join("\n") + (i.notes ? `\n   Notes: ${i.notes}` : "")).join("\n\n");
+  const files = attachments.length ? attachments.map(a => a.filename).join(", ") : "None";
+  const to = env.QUOTE_TO || DEFAULT_TO;
 
-  const business = await sendEmail(env, {
-    from: env.QUOTE_FROM, to: [env.QUOTE_TO || DEFAULT_TO], reply_to: f.email,
-    subject: `Quote request ${ref}: ${f.category}`,
-    html: `<h2>New quote request</h2><table>${table}</table>`,
-    text: rows.map(([k, v]) => `${k}: ${v}`).join("\n"),
+  const ok = await sendEmail(env, {
+    from: env.QUOTE_FROM, to: [to], reply_to: c.email,
+    subject: `Quote request ${ref}: ${items.length} item${items.length > 1 ? "s" : ""} from ${c.name}`,
+    html: `<h2>New quotation request</h2><table>${rowsHtml(cust)}</table>${itemHtml}<p><b>Attachments:</b> ${esc(files)}</p>`,
+    text: cust.map(([k, v]) => `${k}: ${v}`).join("\n") + `\n\n${itemText}\n\nAttachments: ${files}`,
     ...(attachments.length ? { attachments } : {})
   });
-  if (!business) return json({ success: false, error: "We could not send your request. Please try again." }, 502);
+  if (!ok) return json({ success: false, error: "We could not send your request. Please try again." }, 502);
 
-  // Customer acknowledgement (failure here does not fail the request)
   const ack = await sendEmail(env, {
-    from: env.QUOTE_FROM, to: [f.email], reply_to: env.QUOTE_TO || DEFAULT_TO,
-    subject: `We received your quote request (${ref}) - Sign Base`,
-    html: `<p>Hi ${esc(f.name)},</p><p>Thank you for contacting Sign Base. We have received your quote request <b>${ref}</b> for <b>${esc(f.category)}</b> and will get back to you shortly.</p><p>Need us sooner? WhatsApp or call <b>72300430</b>.</p><table>${table}</table><p>Sign Base</p>`,
-    text: `Hi ${f.name},\n\nThank you for contacting Sign Base. We received your quote request ${ref} for ${f.category} and will get back to you shortly.\nNeed us sooner? WhatsApp or call 72300430.\n\nSign Base`
+    from: env.QUOTE_FROM, to: [c.email], reply_to: to,
+    subject: `We received your quotation request (${ref}) - Sign Base`,
+    html: `<p>Hi ${esc(c.name)},</p><p>Thank you for choosing Sign Base! Your quotation request <b>${ref}</b> has been received. Our team will review your requirements and get back to you via ${esc(c.method)}.</p>${itemHtml}<p>Need us sooner? WhatsApp or call <b>72300430</b>.</p><p>Sign Base</p>`,
+    text: `Hi ${c.name},\n\nThank you for choosing Sign Base! Your quotation request ${ref} has been received. Our team will review your requirements and get back to you via ${c.method}.\n\n${itemText}\n\nNeed us sooner? WhatsApp or call 72300430.\n\nSign Base`
   });
   return json({ success: true, ref, acknowledged: ack });
 }
-
 export const onRequest = () => json({ success: false, error: "Method not allowed." }, 405);
