@@ -49,9 +49,15 @@ export async function onRequestPost({ request, env }) {
   const itemText = items.map((i, n) => `${n + 1}. ${i.name} (${i.category}) qty ${i.qty}\n` + i.specs.map(([k, v]) => `   ${k}: ${v}`).join("\n") + (i.notes ? `\n   Notes: ${i.notes}` : "")).join("\n\n");
   const files = attachments.length ? attachments.map(a => a.filename).join(", ") : "None";
   const to = env.QUOTE_TO || DEFAULT_TO;
+  const recipients = [
+  to,
+  env.QUOTE_CC
+].filter(Boolean);
 
   const ok = await sendEmail(env, {
-    from: env.QUOTE_FROM, to: [to], reply_to: c.email,
+  from: env.QUOTE_FROM,
+  to: recipients,
+  reply_to: c.email,
     subject: `Quote request ${ref}: ${items.length} item${items.length > 1 ? "s" : ""} from ${c.name}`,
     html: `<h2>New quotation request</h2><table>${rowsHtml(cust)}</table>${itemHtml}<p><b>Attachments:</b> ${esc(files)}</p>`,
     text: cust.map(([k, v]) => `${k}: ${v}`).join("\n") + `\n\n${itemText}\n\nAttachments: ${files}`,
