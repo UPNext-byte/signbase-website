@@ -1,9 +1,3 @@
-
 name = "signbase-website"
 pages_build_output_dir = "public"
 compatibility_date = "2025-01-01"
-
-[vars]
-QUOTE_TO = "info@signbase.co.bw"
-QUOTE_CC = "salessignbase1@gmail.com"
-QUOTE_FROM = "Signbase <quotes@signbase.co.bw>"
